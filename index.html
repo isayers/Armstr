@@ -587,6 +587,7 @@
         font-size: 24px;
         transition: all 0.3s ease;
         pointer-events: none;
+        display: block;
     }
 
     .nav-item.active .nav-icon {
@@ -597,6 +598,7 @@
         font-size: 11px;
         font-weight: 600;
         pointer-events: none;
+        display: block;
     }
 
     .nav-label {
@@ -2301,20 +2303,20 @@
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
         <div class="nav-item active" onclick="navigateTo('home')">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
+            <div class="nav-icon">🏠</div>
+            <div class="nav-label">Home</div>
         </div>
         <div class="nav-item" onclick="navigateTo('categories')">
-            <span class="nav-icon">📂</span>
-            <span class="nav-label">Categories</span>
+            <div class="nav-icon">📂</div>
+            <div class="nav-label">Categories</div>
         </div>
         <div class="nav-item" onclick="navigateTo('cart')">
-            <span class="nav-icon">🛒</span>
-            <span class="nav-label">Cart</span>
+            <div class="nav-icon">🛒</div>
+            <div class="nav-label">Cart</div>
         </div>
         <div class="nav-item" onclick="navigateTo('account')">
-            <span class="nav-icon">👤</span>
-            <span class="nav-label">Account</span>
+            <div class="nav-icon">👤</div>
+            <div class="nav-label">Account</div>
         </div>
     </nav>
 
