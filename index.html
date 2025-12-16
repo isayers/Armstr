@@ -1507,7 +1507,6 @@
     .guide-overlay.active {
         opacity: 1;
         visibility: visible;
-        pointer-events: auto;
     }
 
     .guide-backdrop {
@@ -1518,6 +1517,7 @@
         bottom: 0;
         background: rgba(0, 0, 0, 0.75);
         backdrop-filter: blur(2px);
+        pointer-events: auto;
     }
 
     .guide-spotlight {
@@ -1539,6 +1539,7 @@
         padding: 20px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         z-index: 2002;
+        pointer-events: auto;
         animation: tooltipSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -2578,6 +2579,7 @@
 
         const spotlight = document.getElementById('guideSpotlight');
         const tooltip = document.getElementById('guideTooltip');
+        const backdrop = document.querySelector('.guide-backdrop');
         const rect = targetElement.getBoundingClientRect();
 
         // Position spotlight around target element
@@ -2586,6 +2588,26 @@
         spotlight.style.left = `${rect.left - padding}px`;
         spotlight.style.width = `${rect.width + padding * 2}px`;
         spotlight.style.height = `${rect.height + padding * 2}px`;
+
+        // Make the backdrop not block clicks on the highlighted element
+        // by creating a cutout effect with clip-path
+        const spotX = rect.left - padding;
+        const spotY = rect.top - padding;
+        const spotW = rect.width + padding * 2;
+        const spotH = rect.height + padding * 2;
+        
+        backdrop.style.clipPath = `polygon(
+            0 0, 
+            100% 0, 
+            100% 100%, 
+            0 100%, 
+            0 0,
+            ${spotX}px ${spotY}px,
+            ${spotX}px ${spotY + spotH}px,
+            ${spotX + spotW}px ${spotY + spotH}px,
+            ${spotX + spotW}px ${spotY}px,
+            ${spotX}px ${spotY}px
+        )`;
 
         // Update tooltip content
         document.getElementById('guideStepCounter').textContent = `${stepIndex + 1} of ${guideSteps.length}`;
@@ -3530,6 +3552,7 @@
         }, 800);
     }
 </script>
+
 
 </body>
 </html>
